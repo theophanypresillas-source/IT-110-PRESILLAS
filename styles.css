@@ -1,0 +1,187 @@
+/* 1. Reset and basic text */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f2f2f2;
+  color: #292929;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  padding: 0 20px;
+}
+
+h1, h2 {
+  color: #161616;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+/* A small gray line introduces each section. */
+h2::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background-color: #8a8a8a;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* 2. Header and navigation */
+header {
+  text-align: center;
+  padding: 48px 0 28px;
+}
+
+nav a {
+  display: inline-block;
+  padding: 8px 18px;
+  margin: 0 3px;
+  border: 1px solid #d5d5d5;
+  border-radius: 6px;
+  background-color: white;
+  color: #444444;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+nav a:hover {
+  background-color: #202020;
+  border-color: #202020;
+  color: white;
+}
+
+nav a:focus-visible {
+  outline: 2px solid #202020;
+  outline-offset: 3px;
+}
+
+/* 3. Cards and box model */
+.card {
+  width: 500px;
+  max-width: 100%;
+  padding: 24px;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+/*
+  Each card is 500px wide when there is enough room.
+  With border-box: 450px content + 48px padding + 2px border = 500px.
+  max-width lets the card shrink if the available space is smaller.
+*/
+.card p {
+  color: #555555;
+  font-size: 0.95rem;
+}
+
+.card p + p {
+  margin-top: 12px;
+}
+
+.intro {
+  font-weight: 400;
+}
+
+/* Cascade: this later .intro rule wins because both have equal
+   specificity and set font-weight. The final weight is 500. */
+.intro {
+  font-weight: 500;
+}
+
+#about {
+  position: relative;
+  border-color: #777777;
+  padding-top: 48px;
+}
+
+#about::after {
+  content: "IT STUDENT";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background-color: #ededed;
+  color: #444444;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* 4. Skills, display, and visibility */
+.skills-list {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.skills-list > li {
+  padding: 6px 14px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  background-color: rgb(245, 245, 245);
+  color: #383838;
+  font-size: 0.85rem;
+}
+
+/* display: none removes the first paragraph and its space.
+   visibility: hidden hides the second one but keeps its space,
+   so the blank area in the Notes card is intentional. */
+.hide-none {
+  display: none;
+}
+
+.hide-visibility {
+  visibility: hidden;
+}
+
+.scroll-box {
+  height: 160px;
+  overflow: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0 32px;
+  color: #666666;
+  font-size: 0.75rem;
+}
+
+/* 5. Reflection questions
+
+1. Why did one conflicting rule win?
+   Both rules use .intro, so they have the same specificity. The second
+   rule wins because it comes later in the file, changing the font-weight
+   from 400 to 500.
+
+2. What would the card width be with content-box?
+   With content-box, the padding and border are added outside the 500px
+   content width. When there is enough space, the total is
+   500 + 24 + 24 + 1 + 1 = 550px.
+
+3. When would you choose visibility: hidden?
+   I would use visibility: hidden if I wanted to hide something without
+   moving the other content. For example, a hidden message would still
+   leave a space, so the paragraph below it would stay in the same place.
+*/
